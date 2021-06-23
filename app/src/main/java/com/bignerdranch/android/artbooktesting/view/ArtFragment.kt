@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.artbooktesting.R
 import com.bignerdranch.android.artbooktesting.adapter.ArtRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.databinding.FragmentArtsBinding
@@ -27,6 +28,12 @@ class ArtFragment @Inject constructor(
         val binding = FragmentArtsBinding.bind(view)
         fragmentBinding = binding
 
+        subscribeToObservers()
+
+        binding.recyclerViewArt.adapter = artRecyclerAdapter
+        binding.recyclerViewArt.layoutManager = LinearLayoutManager(context)
+
+
         binding.fab.setOnClickListener {
             findNavController().navigate(ArtFragmentDirections.actionArtFragmentToArtDetailsFragment())
         }
@@ -34,7 +41,7 @@ class ArtFragment @Inject constructor(
 
     private fun subscribeToObservers() {
         viewModel.artList.observe(viewLifecycleOwner, Observer {
-
+            artRecyclerAdapter.arts = it
         })
     }
 
