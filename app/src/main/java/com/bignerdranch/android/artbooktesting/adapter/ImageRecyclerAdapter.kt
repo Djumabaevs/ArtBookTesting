@@ -36,6 +36,8 @@ class ImageRecyclerAdapter @Inject constructor(
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.image_row,parent,false)
         return ImageViewHolder(view)
