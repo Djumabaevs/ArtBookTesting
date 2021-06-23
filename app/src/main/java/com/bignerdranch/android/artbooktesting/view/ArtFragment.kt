@@ -5,9 +5,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.artbooktesting.R
+import com.bignerdranch.android.artbooktesting.adapter.ArtRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.databinding.FragmentArtsBinding
+import javax.inject.Inject
 
-class ArtFragment : Fragment(R.layout.fragment_arts) {
+class ArtFragment @Inject constructor(
+    val artRecyclerAdapter: ArtRecyclerAdapter
+) : Fragment(R.layout.fragment_arts) {
 
     private var fragmentBinding: FragmentArtsBinding? = null
 
