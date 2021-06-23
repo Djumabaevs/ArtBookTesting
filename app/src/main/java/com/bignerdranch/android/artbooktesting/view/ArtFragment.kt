@@ -3,6 +3,7 @@ package com.bignerdranch.android.artbooktesting.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.artbooktesting.R
@@ -29,6 +30,12 @@ class ArtFragment @Inject constructor(
         binding.fab.setOnClickListener {
             findNavController().navigate(ArtFragmentDirections.actionArtFragmentToArtDetailsFragment())
         }
+    }
+
+    private fun subscribeToObservers() {
+        viewModel.artList.observe(viewLifecycleOwner, Observer {
+
+        })
     }
 
     override fun onDestroyView() {
