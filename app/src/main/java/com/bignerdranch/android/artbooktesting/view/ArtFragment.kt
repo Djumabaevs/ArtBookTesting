@@ -53,6 +53,8 @@ class ArtFragment @Inject constructor(
         binding.recyclerViewArt.adapter = artRecyclerAdapter
         binding.recyclerViewArt.layoutManager = LinearLayoutManager(context)
 
+        ItemTouchHelper(swipeCallback).attachToRecyclerView(binding.recyclerViewArt)
+
 
         binding.fab.setOnClickListener {
             findNavController().navigate(ArtFragmentDirections.actionArtFragmentToArtDetailsFragment())
