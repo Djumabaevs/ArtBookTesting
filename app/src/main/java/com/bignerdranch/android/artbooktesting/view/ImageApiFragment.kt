@@ -30,7 +30,9 @@ class ImageApiFragment @Inject constructor(
         binding.imageRecyclerView.adapter = imageRecyclerAdapter
         binding.imageRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 
-
+        imageRecyclerAdapter.setOnItemClickListener {
+            viewModel.setSelectedImage(it)
+        }
 
 
     }
