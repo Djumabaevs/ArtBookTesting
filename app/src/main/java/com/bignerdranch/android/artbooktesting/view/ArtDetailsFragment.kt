@@ -2,6 +2,7 @@ package com.bignerdranch.android.artbooktesting.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.artbooktesting.R
 import com.bignerdranch.android.artbooktesting.databinding.FragmentArtDetailsBinding
+import com.bignerdranch.android.artbooktesting.util.Status
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
 import com.bumptech.glide.RequestManager
 import javax.inject.Inject
@@ -62,7 +64,17 @@ class ArtDetailsFragment @Inject constructor(
         })
         viewModel.insertArtMessage.observe(viewLifecycleOwner, Observer {
             when(it.status) {
+                Status.SUCCESS -> {
+                    Toast.makeText(requireContext(),"Success", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                    viewModel.resetInsertArtMsg()
+                }
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message ?: "Error", Toast.LENGTH_LONG).show()
+                }
+                Status.LOADING -> {
 
+                }
             }
         })
     }
