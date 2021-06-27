@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.fragmentFactory = fragmentFactory
         setContentView(R.layout.activity_main)
 
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
+     //   window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 }

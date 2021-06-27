@@ -13,8 +13,10 @@ import com.bignerdranch.android.artbooktesting.R
 import com.bignerdranch.android.artbooktesting.adapter.ArtRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.databinding.FragmentArtsBinding
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ArtFragment @Inject constructor(
     val artRecyclerAdapter: ArtRecyclerAdapter
 ) : Fragment(R.layout.fragment_arts) {

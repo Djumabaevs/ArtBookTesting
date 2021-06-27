@@ -37,7 +37,8 @@ class ArtDetailsFragment @Inject constructor(
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+               findNavController().popBackStack()
+
             }
 
         }
