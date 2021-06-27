@@ -3,11 +3,14 @@ package com.bignerdranch.android.artbooktesting.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bignerdranch.android.artbooktesting.R
 import com.bignerdranch.android.artbooktesting.adapter.ImageRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.databinding.FragmentImageApiBinding
+import com.bignerdranch.android.artbooktesting.util.Status
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
 import javax.inject.Inject
 
@@ -31,10 +34,29 @@ class ImageApiFragment @Inject constructor(
         binding.imageRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 
         imageRecyclerAdapter.setOnItemClickListener {
+            findNavController().popBackStack()
             viewModel.setSelectedImage(it)
         }
+    }
 
+    fun subscribeToObservers() {
+        viewModel.imageList.observe(viewLifecycleOwner, Observer {
+            when(it.status) {
+                Status.SUCCESS -> {
+                    val urls = it.data?.hits?.map { imageResult ->
+                        imageResult.previewURL
+                    }
+                    imageRecyclerAdapter.images = urls ?: listOf()
 
+                }
+                Status.ERROR -> {
+
+                }
+                Status.LOADING -> {
+
+                }
+            }
+        })
     }
 
 }
