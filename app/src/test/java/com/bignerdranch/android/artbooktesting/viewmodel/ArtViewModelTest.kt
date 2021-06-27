@@ -1,10 +1,15 @@
 package com.bignerdranch.android.artbooktesting.viewmodel
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bignerdranch.android.artbooktesting.repo.FakeArtRepository
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class ArtViewModelTest {
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: ArtViewModel
 
