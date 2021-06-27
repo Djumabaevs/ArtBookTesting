@@ -2,6 +2,8 @@ package com.bignerdranch.android.artbooktesting.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +14,7 @@ import com.bignerdranch.android.artbooktesting.adapter.ImageRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.databinding.FragmentImageApiBinding
 import com.bignerdranch.android.artbooktesting.util.Status
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
+import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 class ImageApiFragment @Inject constructor(
@@ -30,6 +33,15 @@ class ImageApiFragment @Inject constructor(
         val binding = FragmentImageApiBinding.bind(view)
         fragmentBinding = binding
 
+        var job: Job? = null
+
+        binding.searchText.addTextChangedListener {
+            job?.cancel()
+
+        }
+
+        subscribeToObservers()
+
         binding.imageRecyclerView.adapter = imageRecyclerAdapter
         binding.imageRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 
@@ -47,13 +59,14 @@ class ImageApiFragment @Inject constructor(
                         imageResult.previewURL
                     }
                     imageRecyclerAdapter.images = urls ?: listOf()
-
+                    fragmentBinding?.progressBar?.visibility = View.GONE
                 }
                 Status.ERROR -> {
-
+                    Toast.makeText(requireContext(), it.message ?: "Error", Toast.LENGTH_LONG).show()
+                    fragmentBinding?.progressBar?.visibility = View.GONE
                 }
                 Status.LOADING -> {
-
+                    fragmentBinding?.progressBar?.visibility = View.VISIBLE
                 }
             }
         })
