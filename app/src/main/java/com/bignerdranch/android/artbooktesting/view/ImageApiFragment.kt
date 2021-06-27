@@ -42,7 +42,11 @@ class ImageApiFragment @Inject constructor(
             job?.cancel()
             job = lifecycleScope.launch {
                 delay(1000)
-
+                it?.let {
+                    if(it.toString().isNotEmpty()) {
+                        viewModel.searchForImage(it.toString() )
+                    }
+                }
             }
         }
 
