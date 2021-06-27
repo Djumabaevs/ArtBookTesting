@@ -12,20 +12,25 @@ class FakeArtRepository: ArtRepositoryInterface {
     private val artsLiveData = MutableLiveData<List<Art>>(arts)
 
     override suspend fun insertArt(art: Art) {
-        TODO("Not yet implemented")
+        arts.add(art)
+        refreshData()
     }
 
     override suspend fun deleteArt(art: Art) {
-        TODO("Not yet implemented")
+        arts.remove(art)
+        refreshData()
     }
 
     override fun getArt(): LiveData<List<Art>> {
-        TODO("Not yet implemented")
+        return artsLiveData
     }
 
     override suspend fun imageSearch(imageString: String): Resource<ImageResponse> {
-        TODO("Not yet implemented")
+        return Resource.success(ImageResponse(listOf(), 0, 0))
     }
 
+    private fun refreshData() {
+        artsLiveData.postValue(arts)
+    }
 
 }
