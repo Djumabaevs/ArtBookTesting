@@ -41,6 +41,14 @@ class ArtDetailsFragment @Inject constructor(
 
         requireActivity().onBackPressedDispatcher.addCallback(callback)
 
+        binding.saveButton.setOnClickListener {
+            viewModel.makeArt(
+                binding.nameText.text.toString(),
+                binding.artistText.text.toString(),
+                binding.yearText.text.toString()
+            )
+        }
+
     }
 
     override fun onDestroyView() {
