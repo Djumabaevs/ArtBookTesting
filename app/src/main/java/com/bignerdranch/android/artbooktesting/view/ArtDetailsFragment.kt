@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.artbooktesting.R
@@ -41,6 +42,8 @@ class ArtDetailsFragment @Inject constructor(
 
         requireActivity().onBackPressedDispatcher.addCallback(callback)
 
+        subscribeToObservers()
+
         binding.saveButton.setOnClickListener {
             viewModel.makeArt(
                 binding.nameText.text.toString(),
@@ -49,6 +52,19 @@ class ArtDetailsFragment @Inject constructor(
             )
         }
 
+    }
+
+    private fun subscribeToObservers() {
+        viewModel.selectedImageUrl.observe(viewLifecycleOwner, Observer {url ->
+            fragmentBinding?.let {
+                glide.load(url).into(it.artImageView)
+            }
+        })
+        viewModel.insertArtMessage.observe(viewLifecycleOwner, Observer {
+            when(it.status) {
+
+            }
+        })
     }
 
     override fun onDestroyView() {
