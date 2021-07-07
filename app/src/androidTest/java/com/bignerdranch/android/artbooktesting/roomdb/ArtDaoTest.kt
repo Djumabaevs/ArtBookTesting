@@ -6,12 +6,15 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.bignerdranch.android.artbooktesting.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
+import javax.inject.Named
 
 @SmallTest
 @ExperimentalCoroutinesApi
@@ -20,15 +23,23 @@ class ArtDaoTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
     private lateinit var dao: ArtDao
-    private lateinit var database: ArtDatabase
+
+    @Inject
+    @Named("testDatabase")
+    lateinit var database: ArtDatabase
 
     @Before
     fun setup() {
 
-        database = Room.inMemoryDatabaseBuilder(
+    /*    database = Room.inMemoryDatabaseBuilder(
                 ApplicationProvider.getApplicationContext(),
-                ArtDatabase::class.java).allowMainThreadQueries().build()
+                ArtDatabase::class.java).allowMainThreadQueries().build()*/
+
+        hiltRule.inject()
 
         dao =database.artDao()
 
