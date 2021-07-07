@@ -16,11 +16,10 @@ object TestAppModule {
 
     @Provides
     @Named("testDatabase")
-    fun injectInMemoryRoom(@ApplicationContext context: Context) {
+    fun injectInMemoryRoom(@ApplicationContext context: Context) =
 
         Room.inMemoryDatabaseBuilder(context, ArtDatabase::class.java)
             .allowMainThreadQueries()
             .build()
 
-    }
 }
