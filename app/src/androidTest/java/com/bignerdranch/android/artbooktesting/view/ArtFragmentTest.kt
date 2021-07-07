@@ -20,7 +20,10 @@ class ArtFragmentTest {
     }
 
     @Test
+    fun testNavigationFromArtToArtDetails() {
 
+
+    }
 
 
 }
