@@ -2,7 +2,12 @@ package com.bignerdranch.android.artbooktesting.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.MediumTest
+import com.bignerdranch.android.artbooktesting.R
 import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -36,8 +41,12 @@ class ArtDetailsFragmentTest {
         launchFragmentInHiltContainer<ArtDetailsFragment>(
             factory = fragmentFactory
         ) {
-
+            Navigation.setViewNavController(requireView(), navController)
         }
+
+        Espresso.onView(ViewMatchers.withId(R.id.artImageView)).perform(click())
+
+
     }
 
 }
