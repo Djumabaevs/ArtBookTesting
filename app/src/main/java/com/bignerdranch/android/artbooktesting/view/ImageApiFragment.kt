@@ -15,11 +15,13 @@ import com.bignerdranch.android.artbooktesting.adapter.ImageRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.databinding.FragmentImageApiBinding
 import com.bignerdranch.android.artbooktesting.util.Status
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ImageApiFragment @Inject constructor(
     private val imageRecyclerAdapter: ImageRecyclerAdapter
 ) : Fragment(R.layout.fragment_image_api) {

@@ -2,7 +2,6 @@ package com.bignerdranch.android.artbooktesting.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bignerdranch.android.artbooktesting.MainCoroutineRule
-import com.bignerdranch.android.artbooktesting.getOrAwaitValue
 import com.bignerdranch.android.artbooktesting.getOrAwaitValueTest
 import com.bignerdranch.android.artbooktesting.repo.FakeArtRepository
 import com.bignerdranch.android.artbooktesting.util.Status
