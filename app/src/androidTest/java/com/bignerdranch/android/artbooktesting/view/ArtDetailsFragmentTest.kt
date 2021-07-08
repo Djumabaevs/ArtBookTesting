@@ -46,7 +46,9 @@ class ArtDetailsFragmentTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.artImageView)).perform(click())
 
-
+        Mockito.verify(navController).navigate(
+            ArtDetailsFragmentDirections.actionArtDetailsFragmentToImageApiFragment()
+        )
     }
 
 }
