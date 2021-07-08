@@ -7,6 +7,7 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.filters.MediumTest
 import com.bignerdranch.android.artbooktesting.R
 import com.bignerdranch.android.artbooktesting.adapter.ImageRecyclerAdapter
 import com.bignerdranch.android.artbooktesting.getOrAwaitValue
@@ -15,12 +16,17 @@ import com.bignerdranch.android.artbooktesting.repo.FakeArtRepositoryTest
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import javax.inject.Inject
 
+@MediumTest
+@HiltAndroidTest
+@ExperimentalCoroutinesApi
 class ImageApiFragmentTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

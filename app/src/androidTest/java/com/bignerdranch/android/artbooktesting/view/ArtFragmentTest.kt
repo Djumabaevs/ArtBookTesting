@@ -8,7 +8,7 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.MediumTest
 import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
-import com.bignerdranch.android.artbooktesting.test.R
+import com.bignerdranch.android.artbooktesting.R
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -42,7 +42,7 @@ class ArtFragmentTest {
         }
 
         Espresso.onView(ViewMatchers
-            .withId(com.bignerdranch.android.artbooktesting.R.id.fab))
+            .withId(R.id.fab))
             .perform(ViewActions.click())
 
         Mockito.verify(navController).navigate(
