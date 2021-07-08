@@ -9,7 +9,6 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.MediumTest
 import com.bignerdranch.android.artbooktesting.R
-import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -18,10 +17,13 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import androidx.test.espresso.Espresso.pressBack
+import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @MediumTest
 @HiltAndroidTest
+@ExperimentalCoroutinesApi
 class ArtDetailsFragmentTest {
 
     @get:Rule
@@ -63,7 +65,12 @@ class ArtDetailsFragmentTest {
             Navigation.setViewNavController(requireView(),navController)
         }
 
-        pressBack()
+        Espresso.pressBack()
         verify(navController).popBackStack()
+    }
+
+    @Test
+    fun testSave() {
+
     }
 }
