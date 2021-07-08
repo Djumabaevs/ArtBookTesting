@@ -20,9 +20,12 @@ import org.mockito.Mockito.verify
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import com.bignerdranch.android.artbooktesting.getOrAwaitValue
 import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
 import com.bignerdranch.android.artbooktesting.repo.FakeArtRepositoryTest
+import com.bignerdranch.android.artbooktesting.roomdb.Art
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
+import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -88,6 +91,11 @@ class ArtDetailsFragmentTest {
         onView(withId(R.id.yearText)).perform(replaceText("1700"))
         onView(withId(R.id.saveButton)).perform(click())
 
-
+        assertThat(testViewModel.artList.getOrAwaitValue()).contains(
+            Art(
+                "Mona Lisa",
+                "Da Vinci",
+                1700,"")
+        )
     }
 }
