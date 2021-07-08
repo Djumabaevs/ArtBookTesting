@@ -18,6 +18,8 @@ import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import androidx.test.espresso.Espresso.pressBack
 import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
+import com.bignerdranch.android.artbooktesting.repo.FakeArtRepositoryTest
+import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -71,6 +73,13 @@ class ArtDetailsFragmentTest {
 
     @Test
     fun testSave() {
+        val testViewModel = ArtViewModel(FakeArtRepositoryTest())
+        launchFragmentInHiltContainer<ArtDetailsFragment>(
+            factory = fragmentFactory
+        ) {
+            viewModel = testViewModel
+        }
+
 
     }
 }
