@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers
@@ -17,6 +18,8 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.bignerdranch.android.artbooktesting.launchFragmentInHiltContainer
 import com.bignerdranch.android.artbooktesting.repo.FakeArtRepositoryTest
 import com.bignerdranch.android.artbooktesting.viewmodel.ArtViewModel
@@ -79,6 +82,11 @@ class ArtDetailsFragmentTest {
         ) {
             viewModel = testViewModel
         }
+
+        onView(withId(R.id.nameText)).perform(replaceText("Mona Lisa"))
+        onView(withId(R.id.artistText)).perform(replaceText("Da Vinci"))
+        onView(withId(R.id.yearText)).perform(replaceText("1700"))
+        onView(withId(R.id.saveButton)).perform(click())
 
 
     }
